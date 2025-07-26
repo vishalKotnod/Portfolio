@@ -11,7 +11,7 @@ export default function Education() {
   return (
     <section
       id="Education"
-      className="relative flex items-center justify-center w-full mt-40 max-w-7xl mx-auto px-6 py-12 rounded-2xl shadow-2xl min-h-[500px] gap-12"
+      className="relative flex flex-col lg:flex-row items-center justify-center w-full mt-40 max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-6 sm:py-10 rounded-2xl shadow-2xl min-h-[400px] md:min-h-[500px] gap-8"
       style={{
         background: "rgba(20, 39, 61, 1)",
         color: "#ccc",
@@ -19,7 +19,7 @@ export default function Education() {
     >
       {/* Left: Animated Image */}
       <div
-        className={`flex-shrink-0 w-64 md:w-96 transition-all ${
+        className={`w-[180px] sm:w-64 md:w-80 lg:w-96 mb-8 lg:mb-0 flex-shrink-0 transition-all ${
           loaded ? "slide-in-left" : "opacity-0"
         }`}
       >
@@ -32,39 +32,44 @@ export default function Education() {
 
       {/* Right: Three Pencil-Shaped Cards for Educational Info */}
       <div
-        className={`flex flex-col gap-6 max-w-lg w-full md:w-auto transition-all ${
+        className={`flex flex-col gap-5 w-full max-w-xl transition-all ${
           loaded ? "slide-in-right" : "opacity-0"
         }`}
       >
-        <div
-          className="pencil-card text-gray-100 shadow-lg p-6 pl-16"
-          style={{ background: "rgba(23, 41, 63, 1)" }}
-        >
-          <div className="font-bold text-lg mb-2">
-            B.Tech in Information Technology
+        {[
+          {
+            title: "B.Tech in Information Technology",
+            subtitle: (
+              <>
+                Yeshwantrao Chavan College of Engineering, Nagpur
+                <br />
+                <i>(Pursuing)</i>
+              </>
+            ),
+          },
+          {
+            title: "Diploma in Information Technology",
+            subtitle: "Government Polytechnic, Nanded",
+          },
+          {
+            title: "SSC",
+            subtitle:
+              "Shri Chhatrapati Shivaji High School, Sharanagar, Sagroli",
+          },
+        ].map((item) => (
+          <div
+            key={item.title}
+            className="pencil-card text-gray-100 shadow-lg px-5 py-5 xs:py-6 xs:px-8 sm:py-7 sm:pl-10 md:pl-14 lg:pl-16 rounded-lg"
+            style={{ background: "rgba(23, 41, 63, 1)" }}
+          >
+            <div className="font-bold text-base xs:text-lg sm:text-xl mb-2">
+              {item.title}
+            </div>
+            <div className="text-xs xs:text-sm sm:text-base">
+              {item.subtitle}
+            </div>
           </div>
-          <div>
-            Yeshwantrao Chavan College of Engineering, Nagpur
-            <br />
-            <i>(Pursuing)</i>
-          </div>
-        </div>
-        <div
-          className="pencil-card text-gray-100 shadow-lg p-6 pl-16"
-          style={{ background: "rgba(23, 41, 63, 1)" }}
-        >
-          <div className="font-bold text-lg mb-2">
-            Diploma in Information Technology
-          </div>
-          <div>Government Polytechnic, Nanded</div>
-        </div>
-        <div
-          className="pencil-card text-gray-100 shadow-lg p-6 pl-16"
-          style={{ background: "rgba(23, 41, 63, 1)" }}
-        >
-          <div className="font-bold text-lg mb-2">SSC</div>
-          <div>Shri Chhatrapati Shivaji High School, Sharanagar, Sagroli</div>
-        </div>
+        ))}
       </div>
 
       <style jsx>{`
@@ -83,15 +88,15 @@ export default function Education() {
           }
         }
         .slide-in-left {
-          animation: slideInLeft 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+          animation: slideInLeft 1.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
         .slide-in-right {
-          animation: slideInRight 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+          animation: slideInRight 1.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
         @keyframes slideInLeft {
           0% {
             opacity: 0;
-            transform: translateX(-150px);
+            transform: translateX(-80px);
           }
           100% {
             opacity: 1;
@@ -101,7 +106,7 @@ export default function Education() {
         @keyframes slideInRight {
           0% {
             opacity: 0;
-            transform: translateX(150px);
+            transform: translateX(80px);
           }
           100% {
             opacity: 1;
@@ -109,11 +114,16 @@ export default function Education() {
           }
         }
         .slide-in-left img {
-          animation: shake 5s ease-in-out infinite 1s;
+          animation: shake 4s ease-in-out infinite 1s;
         }
-        /* Pencil shape: pointed (left) tip using clip-path */
         .pencil-card {
           clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 10% 100%, 0% 50%);
+          box-sizing: border-box;
+        }
+        @media (max-width: 1024px) {
+          .pencil-card {
+            border-radius: 0.7rem;
+          }
         }
       `}</style>
     </section>
